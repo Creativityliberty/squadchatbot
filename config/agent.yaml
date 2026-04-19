@@ -1,0 +1,53 @@
+agent:
+  name: "SynapseSalesSquad"
+  description: "Escouade multi-agents pour la vente proactive Librairie de France"
+  univers:
+    - PocketFlowCore
+    - StructureAgentIA
+    - KnowledgeLayer
+    - EventBusUnivers
+  protocol: N2A
+  llm: gemini-1.5-pro
+  memory: true
+  eventbus: true
+
+flows:
+  - name: proactive_sales_flow
+    nodes:
+      - id: Archer
+        name: "Stratège Archer"
+        description: "Analyse l'intention et planifie la campagne"
+        prompt_ref: "prompts/archer.md"
+      
+      - id: Scout
+        name: "Sourceur Scout"
+        description: "Sélectionne les produits et stories dans le catalogue"
+        prompt_ref: "prompts/scout.md"
+        input: "catalog-produits.json"
+
+      - id: Scribe
+        name: "Libraire Synapse"
+        description: "Rédige le script de vente proactif avec monologue"
+        prompt_ref: "synapse-system-prompt.md"
+
+      - id: Sentinel
+        name: "Auditeur Sentinel"
+        description: "Vérifie la conformité des prix et du ton"
+        prompt_ref: "prompts/sentinel.md"
+
+    transitions:
+      - from: Archer
+        to: Scout
+        on: plan_ready
+      - from: Scout
+        to: Scribe
+        on: products_found
+      - from: Scribe
+        to: Sentinel
+        on: script_generated
+      - from: Sentinel
+        to: end
+        on: approved
+      - from: Sentinel
+        to: Scribe
+        on: rejected # Boucle de correction si erreur de prix

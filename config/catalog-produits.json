@@ -1,0 +1,56 @@
+[
+  {
+    "id": "bouilloire-01",
+    "nom": "Bouilloire électrique 2l - op-01",
+    "prix": 6500,
+    "devise": "FCFA",
+    "categorie": "Electro-ménager",
+    "commentaire": "Idéale pour une utilisation quotidienne, cette bouilloire combine efficacité et design moderne à un prix très accessible.",
+    "recit": "Imaginez préparer un thé parfait en un rien de temps pour vos amis qui débarquent à l'improviste. Avec cette bouilloire, vous êtes toujours prêt pour le thé de l'amitié – même à 3h du matin !"
+  },
+  {
+    "id": "speaker-d14l",
+    "nom": "Haut-parleur Bluetooth op-d14l + trépied offert",
+    "prix": 76500,
+    "devise": "FCFA",
+    "categorie": "Informatique / Audio",
+    "commentaire": "Offre un son de haute qualité et une portabilité exceptionnelle, parfait pour les amateurs de musique.",
+    "recit": "C'est le dernier été de liberté avant de rentrer dans le 'monde des adultes'. La musique est bonne, les rires fusent et les souvenirs s'accumulent !"
+  },
+  {
+    "id": "opera-pekin-3",
+    "nom": "L'opéra de Pékin tome 3 - Tankobon",
+    "prix": 1000,
+    "devise": "FCFA",
+    "categorie": "Livre",
+    "commentaire": "Une excellente addition pour les collectionneurs et passionnés de la littérature asiatique.",
+    "recit": "Plongez dans le tome 3 et vous pourriez vous retrouver à donner des noms chinois à tous vos plantes d'appartement."
+  },
+  {
+    "id": "barre-pompe",
+    "nom": "Barre de sport pour pompe",
+    "prix": 7000,
+    "devise": "FCFA",
+    "categorie": "Sport",
+    "commentaire": "Robuste et polyvalente, cette barre est un must-have pour les adeptes du fitness à domicile.",
+    "recit": "Parfait pour ceux qui ont promis de faire plus d'exercice. Montrez à votre sofa qui est le patron !"
+  },
+  {
+    "id": "tapis-yoga",
+    "nom": "Tapis de yoga et fitness",
+    "prix": 12000,
+    "devise": "FCFA",
+    "categorie": "Sport",
+    "commentaire": "Confortable et durable, ce tapis est parfait pour une variété d'activités physiques.",
+    "recit": "Pourquoi aller à un cours de yoga quand vous pouvez faire vos salutations au soleil dans le confort de votre salon ?"
+  },
+  {
+    "id": "table-pliante",
+    "nom": "Table pliante + 2 chaises",
+    "prix": 33500,
+    "devise": "FCFA",
+    "categorie": "Mobilier",
+    "commentaire": "Solution parfaite pour les espaces restreints.",
+    "recit": "Idéale pour le balcon, cette table garantit que votre dîner aux chandelles ne sera interrompu que par les étoiles."
+  }
+]

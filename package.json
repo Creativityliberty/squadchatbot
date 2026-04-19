@@ -1,0 +1,27 @@
+{
+  "name": "agentsccard",
+  "version": "1.0.0",
+  "description": "Ce projet implémente une escouade multi-agents spécialisée pour la **Librairie de France**. Elle transforme un catalogue de produits en scripts de vente proactifs haute-conversion.",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node src/orchestrator.ts",
+    "server": "ts-node src/server.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1"
+  }
+}

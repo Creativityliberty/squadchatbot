@@ -1,0 +1,51 @@
+{
+  "name": "Synapse Premium",
+  "vibe": "Glassmorphism, Professional AI",
+  "typography": {
+    "fontPrimary": "'Inter', -apple-system, sans-serif",
+    "fontSizeBase": "16px",
+    "fontWeights": {
+      "soft": 300,
+      "regular": 400,
+      "semibold": 600,
+      "bold": 700
+    }
+  },
+  "palettes": {
+    "light": {
+      "background": "#ffffff",
+      "foreground": "#020817",
+      "card": "#ffffff",
+      "cardForeground": "#020817",
+      "primary": "#0f172a",
+      "primaryForeground": "#f8fafc",
+      "secondary": "#f1f5f9",
+      "muted": "#f1f5f9",
+      "mutedForeground": "#64748b",
+      "accent": "#f1f5f9",
+      "border": "#e2e8f0",
+      "ring": "#020817"
+    },
+    "dark": {
+      "background": "#020817",
+      "foreground": "#f8fafc",
+      "card": "#020817",
+      "cardForeground": "#f8fafc",
+      "primary": "#f8fafc",
+      "primaryForeground": "#0f172a",
+      "secondary": "#1e293b",
+      "muted": "#1e293b",
+      "mutedForeground": "#94a3b8",
+      "accent": "#1e293b",
+      "border": "#1e293b",
+      "ring": "#cbd5e1"
+    }
+  },
+  "effects": {
+    "radius": "1rem",
+    "shadowSM": "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+    "shadowLG": "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+    "glass": "backdrop-filter: blur(8px); background: rgba(255, 255, 255, 0.5); border: 1px solid rgba(255, 255, 255, 0.2);",
+    "gradientSynapse": "linear-gradient(135deg, #6366f1 0%, #a855f7 100%)"
+  }
+}

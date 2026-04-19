@@ -1,0 +1,53 @@
+goal: "Développer l'Escouade Multi-Agents Synapse (Archer, Scout, Scribe, Sentinel)"
+version: "1.0"
+created_at: "2026-04-19T02:35:00Z"
+tasks:
+  - id: t1
+    name: "Initialiser le Hub d'Orchestration"
+    description: "Créer le script central qui fait communiquer les 4 agents entre eux"
+    skill: null
+    input: {}
+    output_artifact: "src/orchestrator.ts"
+    artifact_type: code
+    depends_on: []
+    estimated_morsels: 2
+
+  - id: t2
+    name: "Agent Scout : Connecteur Catalogue"
+    description: "Coder la logique permettant au Scout de lire le JSON et de filtrer les produits"
+    skill: null
+    input: {}
+    output_artifact: "src/agents/scout.ts"
+    artifact_type: code
+    depends_on: [t1]
+    estimated_morsels: 1
+
+  - id: t3
+    name: "Agent Scribe : Moteur de Script Synapse"
+    description: "Implémenter le Scribe avec le prompt 'Synapse' et la gestion du Monologue"
+    skill: null
+    input: {}
+    output_artifact: "src/agents/scribe.ts"
+    artifact_type: code
+    depends_on: [t1]
+    estimated_morsels: 2
+
+  - id: t4
+    name: "Agent Sentinel : Validateur de Données"
+    description: "Coder le module de vérification (Anti-Hallucination) pour les prix et specs"
+    skill: null
+    input: {}
+    output_artifact: "src/agents/sentinel.ts"
+    artifact_type: code
+    depends_on: [t3]
+    estimated_morsels: 1
+
+  - id: t5
+    name: "Test de Campagne Proactive"
+    description: "Lancer une simulation : 'Vendre la Bouilloire' à travers toute la squad"
+    skill: null
+    input: {}
+    output_artifact: "scripts/run-campaign.ts"
+    artifact_type: code
+    depends_on: [t2, t3, t4]
+    estimated_morsels: 1

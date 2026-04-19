@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="fr" class="bg-black text-white">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synapse Squad | Librairie de France</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (via CDN pour le test immédiat) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        heading: ["'Instrument Serif'", "serif"],
+                        body: ["'Barlow'", "sans-serif"],
+                    },
+                    colors: {
+                        background: 'hsl(213 45% 7%)', // Plus sombre pour le mode premium
+                        foreground: 'hsl(0 0% 100%)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.015);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-blur: 16px;
+        }
+
+        body {
+            background-color: #05080a;
+            font-family: 'Barlow', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* --- LIQUID GLASS --- */
+        .liquid-glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .liquid-glass::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            padding: 1px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0.2) 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            border-radius: inherit;
+        }
+
+        .liquid-glass-strong {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .liquid-glass-strong:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .font-heading { font-family: 'Instrument Serif', serif; font-style: italic; }
+
+        /* --- HERO VIDEO --- */
+        #hero-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-cover: cover;
+            z-index: -2;
+            opacity: 0.6;
+            filter: saturate(0.8) contrast(1.1);
+        }
+
+        .video-overlay {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent, #05080a 90%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+        }
+        .status-online { background: #10b981; box-shadow: 0 0 10px #10b981; }
+
+        /* --- CUSTOM SCROLLBAR --- */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+    </style>
+</head>
+<body class="p-4 md:p-12">
+
+    <!-- Video Background -->
+    <video id="hero-video" autoplay loop muted playsinline poster="/images/hero_bg.jpeg">
+        <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260307_083826_e938b29f-a43a-41ec-a153-3d4730578ab8.mp4" type="video/mp4">
+    </video>
+    <div class="video-overlay"></div>
+
+    <!-- Main Container -->
+    <div class="max-w-6xl mx-auto space-y-12 relative z-10">
+        
+        <!-- Header Section -->
+        <header class="text-center space-y-4 pt-12">
+            <div class="inline-flex items-center gap-2 liquid-glass rounded-full px-4 py-1.5 text-xs font-light tracking-widest text-white/70">
+                <span class="status-dot status-online animate-pulse"></span>
+                SYSTEM ACTIVE: SYNAPE CLUSTER 01
+            </div>
+            <h1 class="text-7xl md:text-9xl font-heading leading-none tracking-tighter">
+                Synapse Squad
+            </h1>
+            <p class="text-white/40 font-body font-light text-lg max-w-xl mx-auto italic">
+                L'excellence agentique au service de la Librairie de France.
+            </p>
+        </header>
+
+        <!-- Dynamic Content Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <!-- Archer -->
+            <div class="liquid-glass rounded-3xl p-6 group">
+                <div class="text-3xl mb-4 group-hover:scale-110 transition-transform">🏹</div>
+                <h3 class="font-heading text-2xl">Archer</h3>
+                <p class="text-white/40 text-xs font-light mt-1">Stratégie & Planning</p>
+                <div class="mt-8 text-[10px] tracking-widest text-white/60 uppercase">En Attente</div>
+            </div>
+            <!-- Scout -->
+            <div class="liquid-glass rounded-3xl p-6 group">
+                <div class="text-3xl mb-4 group-hover:scale-110 transition-transform">🔎</div>
+                <h3 class="font-heading text-2xl">Scout</h3>
+                <p class="text-white/40 text-xs font-light mt-1">Recherche Catalogue</p>
+                <div class="mt-8 text-[10px] tracking-widest text-emerald-400 uppercase">Prêt</div>
+            </div>
+            <!-- Scribe -->
+            <div class="liquid-glass rounded-3xl p-6 group">
+                <div class="text-3xl mb-4 group-hover:scale-110 transition-transform">🧙🏾‍♂️</div>
+                <h3 class="font-heading text-2xl">Scribe</h3>
+                <p class="text-white/40 text-xs font-light mt-1">Rédaction Proactive</p>
+                <div class="mt-8 text-[10px] tracking-widest text-emerald-400 uppercase">Prêt</div>
+            </div>
+            <!-- Sentinel -->
+            <div class="liquid-glass rounded-3xl p-6 group">
+                <div class="text-3xl mb-4 group-hover:scale-110 transition-transform">🛡️</div>
+                <h3 class="font-heading text-2xl">Sentinel</h3>
+                <p class="text-white/40 text-xs font-light mt-1">Audit Anti-Erreur</p>
+                <div class="mt-8 text-[10px] tracking-widest text-emerald-400 uppercase">Prêt</div>
+            </div>
+        </div>
+
+        <!-- Terminal Console -->
+        <div class="space-y-4">
+            <div class="flex items-center justify-between px-2">
+                <h2 class="font-heading text-3xl italic">Agent Reasoning Logs</h2>
+                <button id="runBtn" class="liquid-glass-strong rounded-full px-8 py-3 text-sm font-medium tracking-wide">
+                    Lancer une Campagne
+                </button>
+            </div>
+            
+            <div class="liquid-glass rounded-[2rem] p-8 min-h-[400px] border-white/5">
+                <div id="console" class="font-body font-light text-white/60 space-y-2 leading-relaxed text-sm">
+                    <span class="opacity-30">> Initializing neural link... stable.</span><br>
+                    <span class="opacity-30">> Waiting for intent vector input.</span>
+                </div>
+            </div>
+        </div>
+
+        <footer class="text-center pb-12 opacity-20 text-[10px] tracking-widest uppercase">
+            &copy; 2026 SYNAPSE CLUSTER | LIBRAIRIE DE FRANCE TECHNOLOGY
+        </footer>
+    </div>
+
+    <script>
+        const runBtn = document.getElementById('runBtn');
+        const consoleDiv = document.getElementById('console');
+
+        runBtn.addEventListener('click', async () => {
+            const intent = prompt("Quelle est l'intention de vente ? (ex: Livres de cuisine ivoirienne)");
+            if (!intent) return;
+
+            consoleDiv.innerHTML = `<span class="text-emerald-400">⚡ Démarrage de la campagne : "${intent}"</span><br>`;
+            runBtn.disabled = true;
+            runBtn.innerText = "REFLEXION EN COURS...";
+
+            try {
+                const response = await fetch('/api/run', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ intent })
+                });
+
+                const store = await response.json();
+                
+                // On simule un affichage progressif des logs
+                let i = 0;
+                const showLogs = setInterval(() => {
+                    if (i < store.logs.length) {
+                        consoleDiv.innerHTML += `<div class="animate-in fade-in duration-700">> ${store.logs[i]}</div>`;
+                        i++;
+                        window.scrollTo(0, document.body.scrollHeight);
+                    } else {
+                        clearInterval(showLogs);
+                        if (store.status === 'done') {
+                            consoleDiv.innerHTML += `
+                                <div class="mt-8 p-8 liquid-glass rounded-2xl border-emerald-500/20 bg-emerald-500/5 animate-in zoom-in duration-500">
+                                    <div class="text-[10px] uppercase tracking-widest text-emerald-400 mb-4">Vente Proactive Validée</div>
+                                    <div class="text-white/90 whitespace-pre-wrap leading-relaxed font-body italic">
+                                        ${store.generatedScript}
+                                    </div>
+                                </div>`;
+                        }
+                    }
+                }, 800);
+
+            } catch (error) {
+                consoleDiv.innerHTML += `<br><span class="text-red-400">> CRITICAL ERROR: API UNREACHABLE</span>`;
+            } finally {
+                runBtn.disabled = false;
+                runBtn.innerText = "Lancer une Campagne";
+            }
+        });
+    </script>
+</body>
+</html>
