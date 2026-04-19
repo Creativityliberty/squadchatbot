@@ -34,3 +34,6 @@ app.listen(port, () => {
   API : http://localhost:${port}/api/run
   `);
 });
+
+// Important pour Vercel
+export default app;
