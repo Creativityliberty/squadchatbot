@@ -1,0 +1,34 @@
+---
+trigger: always_on
+---
+
+# 🏹 Agentic Coding : Standards d'Excellence (Niveau 2)
+
+Ce document complète le rule `@[user_global]` et s'applique avec une priorité absolue.
+
+## 1. 🤫 Règle du Silence Contextuel
+L'agent ne doit poser AUCUNE question triviale si la réponse peut être déduite en introspectant le projet.
+- **Action** : Toujours lire `package.json`, `docs/design.md` et les fichiers sources AVANT de demander une précision sur la stack ou l'architecture.
+
+## 2. 🛡️ Résilience & Self-Healing (Bouton Auto)
+En cas d'erreur bloquante (Build, Types, Runtime), l'agent lance immédiatement un cycle de réparation :
+- **Audit** : Analyse de l'erreur via `audit-heal`.
+- **Réparation** : Correction atomique via `morsel-tasks`.
+- **Validation** : Vérification du succès.
+L'humain n'est prévenu qu'une fois la solution trouvée ou si 3 tentatives échouent.
+
+## 3. 🍱 Artifact-Only Delivery
+Les résultats complexes ne sont plus livrés en texte brut.
+- **Format** : Utilisation systématique de `artifact-maker`.
+- **Richesse** : Rapports en Markdown riche, schémas Mermaid, métadonnées JSON complètes.
+
+## 4. 💎 Garantie Esthétique Premium
+L'agent s'interdit le "MVP de base". Toute UI produite doit être "Production-Ready" dès le premier jet.
+- **Styling** : Mode sombre, HSL Tailored Colors, Liquid Glass.
+- **UX** : Typographies Google Fonts, Micro-animations, Design responsive parfait.
+
+## 5. ♾️ Autonomie Singularity
+Si l'utilisateur demande une fonctionnalité complexe, l'agent bascule par défaut en mode `/singularity` :
+- Décomposition en tâches.
+- Exécution enchaînée des skills.
+- Rapport de fin de mission global.

@@ -1,40 +1,44 @@
-import fs from 'fs';
 import { SharedStore } from '../lib/store';
 import { callLLM } from '../lib/llm';
+import { CatalogService } from '../lib/catalog';
 
-/**
- * AGENT SCOUT (Le Sourceur)
- * Mission : Parcourir le catalogue et trouver les produits qui matchent l'intention.
- */
 export class ScoutAgent {
-  private catalogPath = './config/catalog-produits.json';
+  private catalogService = CatalogService.getInstance();
 
   async exec(store: SharedStore): Promise<string> {
-    const catalog = JSON.parse(fs.readFileSync(this.catalogPath, 'utf8'));
+    // On présélectionne 10 produits via une recherche sémantique simple
+    const relevantSubset = this.catalogService.search(store.intent, 15);
     
-    const searchPrompt = `
-Tu es l'agent Scout. Trouve UNIQUEMENT les 2 meilleurs produits dans ce catalogue pour l'intention suivante : "${store.intent}".
-CATALOGUE (JSON) :
-${JSON.stringify(catalog)}
+    if (relevantSubset.length === 0) {
+        console.warn("[Scout] Aucun produit trouvé pour l'intention :", store.intent);
+        store.selectedProducts = [];
+        return 'not_found';
+    }
 
-Réponds UNIQUEMENT au format JSON strict : envoie une liste d'objets [{}, {}].
+    const searchPrompt = `
+Tu es l'agent Scout de la Librairie de France. 
+OBJECTIF : Trouve UNIQUEMENT les 2 meilleurs produits dans cette sélection pour l'intention : "${store.intent}".
+
+SÉLECTION DE PRODUITS DISPONIBLES :
+${JSON.stringify(relevantSubset)}
+
+CONSIGNES :
+1. Réponds UNIQUEMENT au format JSON strict : envoie une liste d'objets [{}, {}].
+2. Si un produit correspond parfaitement, privilégie-le.
+3. Si aucun produit ne correspond, renvoie une liste vide [].
 `;
 
-    // Modèle Lite car c'est une tâche de traitement de données simple
     const response = await callLLM(searchPrompt, "gemini-3.1-flash-lite-preview");
 
     try {
-      // Nettoyage robuste : on cherche ce qui est entre les premiers [ et les derniers ]
       const jsonMatch = response.match(/\[[\s\S]*\]/);
       const jsonStr = jsonMatch ? jsonMatch[0] : response;
-      
       const selected = JSON.parse(jsonStr);
       store.selectedProducts = selected;
-      return 'found';
+      return selected.length > 0 ? 'found' : 'not_found';
     } catch (e) {
-      console.error("[Scout] Erreur selection produits, utilisation du fallback...", e);
-      // Fallback : on prend les deux premiers du catalogue (qui est une liste directe)
-      store.selectedProducts = [catalog[0], catalog[1]].filter(Boolean);
+      console.error("[Scout] Erreur parsing, fallback sur premier résultat...", e);
+      store.selectedProducts = [relevantSubset[0]];
       return 'fallback';
     }
   }
